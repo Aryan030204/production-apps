@@ -11,8 +11,6 @@ const userRouter = require("./routes/user.route");
 const conversationRouter = require("./routes/conversation.route");
 require("dotenv").config();
 
-app.use(express.json());
-app.use(cookieParser());
 const corsOptions = {
   origin: "https://production-apps.vercel.app",
   credentials: true,
@@ -22,6 +20,8 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions));
+app.use(cookieParser());
+app.use(express.json());
 app.use("/api/", authRouter);
 app.use("/api/", profileRouter);
 app.use("/api/", routesRouter);
