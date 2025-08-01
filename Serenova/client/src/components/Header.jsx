@@ -65,7 +65,7 @@ const Header = () => {
 
       {/* Mobile Dropdown */}
       {isOpen && (
-        <ul className="lg:hidden absolute top-[5rem] left-0 w-full bg-white shadow-lg border-t border-gray-200 flex flex-col items-center py-4 space-y-4 z-50">
+        <ul className="lg:hidden absolute top-[4rem] left-0 w-full bg-white shadow-lg border-t border-gray-200 flex flex-col items-center py-4 space-y-4 z-50">
           {navLinks.map((link) => (
             <li key={link.path}>
               <Link

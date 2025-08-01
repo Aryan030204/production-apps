@@ -54,9 +54,6 @@ const WhatToDo = () => {
           />
         </div>
       </div>
-
-      {/* OR on small screens */}
-      <div className="block lg:hidden mt-10 text-white text-2xl font-bold font-mono">OR</div>
     </div>
   );
 };

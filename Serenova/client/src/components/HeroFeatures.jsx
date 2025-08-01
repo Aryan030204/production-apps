@@ -55,7 +55,7 @@ const HeroFeatures = () => {
           >
             <div className="mb-4 text-white">{feature.icon}</div>
             <h2 className="text-xl font-bold mb-2">{feature.title}</h2>
-            <p className="font-serif text-sm">{feature.desc}</p>
+            <p className="font-sans text-lg">{feature.desc}</p>
           </div>
         ))}
       </div>

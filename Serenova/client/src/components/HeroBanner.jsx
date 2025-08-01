@@ -42,12 +42,12 @@ const HeroBanner = () => {
         <img
           src={hero2}
           alt="hero2"
-          className="hero2 absolute lg:top-[12.5rem] lg:left-[7rem] w-[20rem] md:w-[18rem] sm:w-[16rem] h-auto"
+          className="hero2 absolute lg:top-[11rem] lg:left-[7rem] w-[20rem] md:w-[18rem] sm:w-[16rem] h-auto"
         />
         <img
           src={hero1}
           alt="hero1"
-          className="hero1 relative lg:bottom-[4.5rem] lg:h-[32rem] md:h-[22rem] h-[18rem] lg:right-[1rem]"
+          className="hero1 relative lg:bottom-[1rem] lg:h-[32rem] md:h-[22rem] h-[18rem] lg:left-[10rem]"
         />
       </div>
     </div>
