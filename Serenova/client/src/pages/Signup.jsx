@@ -1,10 +1,4 @@
-import {
-  Button,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
-} from "@mui/material";
+import { Button, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { Link, useNavigate } from "react-router"; // fixed from "react-router"
 import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
@@ -26,11 +20,16 @@ const Signup = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const isEmailValid = (email) =>
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const isEmailValid = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   const isFormValid =
-    firstName && lastName && age && gender && email && password && isEmailValid(email);
+    firstName &&
+    lastName &&
+    age &&
+    gender &&
+    email &&
+    password &&
+    isEmailValid(email);
 
   const handleSignup = async () => {
     if (!isEmailValid(email)) {
@@ -162,6 +161,13 @@ const Signup = () => {
               {loading ? "Creating..." : "Create"}
             </Button>
           </form>
+          <div className="w-full my-2 text-sm">
+            <ul className="list-disc ml-4">
+              <li>Password must be of minimum 8 characters</li>
+              <li>contains atleast 1 symbol</li>
+              <li>contains atleast 1 capital letter</li>
+            </ul>
+          </div>
 
           <p className="mt-6 font-semibold">
             Already have an account?{" "}
