@@ -140,10 +140,7 @@ const OpenedPost = () => {
   return (
     <div className="flex flex-col p-[2rem] justify-between items-start w-full gap-4">
       <div className="flex border-2 p-2 rounded-lg bg-red-500 hover:bg-red-600 shadow-xl">
-        <Link
-          to={"/blog"}
-          className="flex items-center font-semibold text-white"
-        >
+        <Link to={"/blog"} className="flex items-center font-semibold text-white">
           {" "}
           <ArrowLeft size={20} /> Back
         </Link>
