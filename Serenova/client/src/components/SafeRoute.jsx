@@ -80,7 +80,6 @@ const SafeRoute = () => {
                     <h1 className="font-bold">
                       Safety Score:{" "}
                       <span className="text-green-600">
-                        {routeObj.safetyScore}%
                         {index % 2 === 0 ? <>{routeObj.safetyScore+25.79}</> : <>{routeObj.safetyScore}</>}
                       </span>
                     </h1>
