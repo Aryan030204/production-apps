@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 const MyPosts = () => {
   const [myPosts, setMyPosts] = useState([]);
   const user = JSON.parse(localStorage.getItem("user"));
-  // const SERVER_URL = import.meta.env.SERVER_URL;
+  
   const getMyPosts = async () => {
     try {
       const res = await axios.get(SERVER_URL + `/${user._id}/stories`, {

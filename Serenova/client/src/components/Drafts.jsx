@@ -5,7 +5,7 @@ import { SERVER_URL } from "../utils/config";
 import { Bookmark } from "lucide-react";
 
 const Drafts = () => {
-  // const SERVER_URL = import.meta.env.SERVER_URL;
+  
   const [draftPosts, setDraftPosts] = useState([]);
   const getDrafts = async () => {
     try {

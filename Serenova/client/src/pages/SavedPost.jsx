@@ -9,7 +9,7 @@ import axios from "axios";
 const SavedPost = () => {
   const [story, setStory] = useState({});
   const { id } = useParams();
-  // const SERVER_URL = import.meta.env.SERVER_URL;
+  
   const getStory = async () => {
     try {
       const res = await axios.get(SERVER_URL + `/stories/${id}`, {

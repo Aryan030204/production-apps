@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 const EditPost = () => {
   const [post, setPost] = useState({ title: "", content: "" });
   const { id } = useParams();
-  // const SERVER_URL = import.meta.env.SERVER_URL;
+  
   const getPost = async () => {
     try {
       const res = await axios.get(

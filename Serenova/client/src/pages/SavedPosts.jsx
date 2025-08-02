@@ -6,7 +6,7 @@ import { Bookmark } from "lucide-react";
 
 const SavedPosts = () => {
   const [savedPosts, setSavedPosts] = useState([]);
-  // const SERVER_URL = import.meta.env.SERVER_URL;
+  
   const getSavedStories = async () => {
     try {
       const res = await axios.get(SERVER_URL + `/user/stories/saved`, {

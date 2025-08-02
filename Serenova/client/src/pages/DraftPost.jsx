@@ -10,7 +10,7 @@ import { Button, TextField } from "@mui/material";
 const DraftPost = () => {
   const [draft, setDraft] = useState({ title: "", content: "" });
   const { id } = useParams();
-// const SERVER_URL = import.meta.env.SERVER_URL;
+
   const handlePost = async () => {
     try {
       await axios.post(

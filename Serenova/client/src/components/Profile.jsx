@@ -14,7 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 const Profile = ({ user }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const SERVER_URL = import.meta.env.SERVER_URL;
+  
 
   if (!user) return null;
 

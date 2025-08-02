@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css"; // fixed path
 import QuoteBox from "../components/QuoteBox";
 
 const Signup = () => {
-  // const SERVER_URL = import.meta.env.SERVER_URL;
+  
   const [hidden, setHidden] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");

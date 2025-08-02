@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const RoutesPage = () => {
   const [routes, setRoutes] = useState([]);
-  // const SERVER_URL = import.meta.env.SERVER_URL;
+  
 
   const getRoutes = async () => {
     const res = await axios.get(SERVER_URL + "/route/all", {

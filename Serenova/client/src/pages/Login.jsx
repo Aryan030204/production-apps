@@ -16,7 +16,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  // const SERVER_URL = import.meta.env.SERVER_URL;
+  
   const navigate = useNavigate();
 
   const handleLogin = async () => {

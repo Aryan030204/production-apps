@@ -18,7 +18,7 @@ const TextEditor = () => {
       withCredentials: true,
     });
   };
-  // const SERVER_URL = import.meta.env.SERVER_URL;
+  
   const showSnackbar = (message, severity = "success") => {
     setSnack({ open: true, message, severity });
   };

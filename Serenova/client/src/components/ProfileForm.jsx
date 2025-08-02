@@ -14,7 +14,7 @@ const ProfileForm = () => {
     age: "",
     gender: "",
   });
-  // const SERVER_URL = import.meta.env.SERVER_URL;
+  
 
   const [saved, setSaved] = useState(false);
 

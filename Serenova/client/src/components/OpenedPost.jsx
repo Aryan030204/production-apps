@@ -1,22 +1,26 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router";
 import { SERVER_URL } from "../utils/config";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.css";
-import PostsNavbar from "./PostsNavbar";
-import UserActivityNavbar from "./UserActivityNavbar";
-import { Bookmark, Share2, ThumbsDown, ThumbsUp } from "lucide-react";
+import {
+  ArrowLeft,
+  Bookmark,
+  Share2,
+  ThumbsDown,
+  ThumbsUp,
+} from "lucide-react";
+import { useSelector } from "react-redux";
 
 const OpenedPost = () => {
   const { id } = useParams();
-  // const SERVER_URL = import.meta.env.SERVER_URL;
   const [story, setStory] = useState({});
   const [liked, setLiked] = useState(false);
   const [disliked, setDisliked] = useState(false);
   const [savedStories, setSavedStories] = useState([]);
-  const user = localStorage.getItem("user");
+  const user = useSelector((state) => state.user.user);
   const months = [
     "January",
     "February",
@@ -134,12 +138,23 @@ const OpenedPost = () => {
   };
 
   return (
-    <div className="flex p-[2rem] justify-between items-start w-full gap-4">
+    <div className="flex flex-col p-[2rem] justify-between items-start w-full gap-4">
+      <div className="flex border-2 p-2 rounded-lg bg-red-500 hover:bg-red-600 shadow-xl">
+        <Link
+          to={"/blog"}
+          className="flex items-center font-semibold text-white"
+        >
+          {" "}
+          <ArrowLeft size={20} /> Back
+        </Link>
+      </div>
       {/*post*/}
-      <div className="flex flex-col w-[80%] gap-4 my-2 bg-gray-800 text-white rounded-lg p-[1rem]">
+      <div className="flex flex-col w-full gap-4 my-2 bg-gray-800 text-white rounded-lg p-[1rem]">
         <div>
           <div>
-            <h1 className="text-4xl font-bold text-red-500">{story.title}</h1>
+            <h1 className="text-3xl lg:text-4xl font-bold text-red-500">
+              {story.title}
+            </h1>
           </div>
           <div className="flex gap-1">
             <h1 className="text-sm font-normal opacity-50 mt-1">
@@ -220,13 +235,6 @@ const OpenedPost = () => {
               </button>
             </div>
           </div>
-        </div>
-      </div>
-      {/*navigation*/}
-      <div className="w-[20%]">
-        <div className="flex flex-col bg-purple-900 rounded-2xl gap-[5rem] h-[40rem] items-center justify-evenly shadow-purple-500 shadow-xl">
-          <PostsNavbar />
-          {user && <UserActivityNavbar />}
         </div>
       </div>
       <ToastContainer />
