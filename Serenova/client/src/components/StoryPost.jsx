@@ -39,7 +39,8 @@ const StoryPost = () => {
         {},
         { withCredentials: true }
       );
-      updateUser(); // no getStories here
+      updateUser();
+      getStories();
     } catch (err) {
       console.log(err);
     }
@@ -54,6 +55,7 @@ const StoryPost = () => {
         { withCredentials: true }
       );
       updateUser();
+      getStories();
     } catch (err) {
       console.log(err);
     }
