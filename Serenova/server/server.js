@@ -12,7 +12,7 @@ const conversationRouter = require("./routes/conversation.route");
 require("dotenv").config();
 
 const corsOptions = {
-  origin: "https://production-apps.vercel.app",
+  origin: "https://serenova-eta.vercel.app",
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
   allowedHeaders: ["Content-Type", "Authorization"],
