@@ -23,6 +23,10 @@ import ChatButton from "./components/ChatButton";
 
 function App() {
   const user = localStorage.getItem("user");
+  console.log("link: ", Link);
+  console.log("browserRouter: ", BrowserRouter);
+  
+  
 
   return (
     <BrowserRouter>
