@@ -1,6 +1,6 @@
 import hero1 from "../assets/hero1.png";
 import hero2 from "../assets/hero2.png";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import gsap from "gsap";
 import { useEffect } from "react";
 
@@ -38,16 +38,16 @@ const HeroBanner = () => {
       </div>
 
       {/* Image Section */}
-      <div className="w-full lg:w-[40%] flex justify-center items-center relative mt-6 lg:mt-0">
+      <div className="w-full lg:w-[40%] lg:flex justify-center items-center relative mt-6 lg:mt-0">
         <img
           src={hero2}
           alt="hero2"
-          className="hero2 absolute lg:top-[11rem] lg:left-[7rem] w-[20rem] md:w-[18rem] sm:w-[16rem] h-auto"
+          className="hero2 absolute lg:top-[11rem] lg:left-[7rem] hidden lg:block w-[20rem] md:w-[18rem] sm:w-[16rem] h-auto"
         />
         <img
           src={hero1}
           alt="hero1"
-          className="hero1 relative lg:bottom-[1rem] lg:h-[32rem] md:h-[22rem] h-[18rem] lg:left-[10rem]"
+          className="hero1 relative lg:bottom-[1rem] lg:h-[32rem] md:h-[22rem] hidden lg:block h-[18rem] lg:left-[10rem]"
         />
       </div>
     </div>
