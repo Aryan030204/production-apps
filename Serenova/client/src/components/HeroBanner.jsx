@@ -1,6 +1,6 @@
 import hero1 from "../assets/hero1.png";
 import hero2 from "../assets/hero2.png";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import gsap from "gsap";
 import { useEffect } from "react";
 

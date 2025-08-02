@@ -2,7 +2,7 @@ import { ThumbsDown, ThumbsUp } from "lucide-react";
 import { useEffect, useState } from "react";
 import PostsNavbar from "../components/PostsNavbar";
 import UserActivityNavbar from "../components/UserActivityNavbar";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 import { SERVER_URL } from "../utils/config";
 import axios from "axios";
 

@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import { SERVER_URL } from "../utils/config";
 import axios from "axios";
 import { setstories } from "../utils/storiesSlice";

@@ -1,5 +1,5 @@
 import { Button, InputLabel, MenuItem, Select, TextField } from "@mui/material";
-import { Link, useNavigate } from "react-router"; // fixed from "react-router"
+import { Link, useNavigate } from "react-router-dom"; // fixed from "react-router-dom"
 import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import axios from "axios";

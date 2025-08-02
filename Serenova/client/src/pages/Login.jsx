@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Button, TextField } from "@mui/material";
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";

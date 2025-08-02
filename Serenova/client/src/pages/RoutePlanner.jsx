@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import RouteDetails from "../components/RouteDetails";
 import SafeRoute from "../components/SafeRoute";
 

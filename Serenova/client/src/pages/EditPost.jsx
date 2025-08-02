@@ -3,7 +3,7 @@ import { Button, TextField } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { SERVER_URL } from "../utils/config";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

@@ -4,7 +4,7 @@ import PostsNavbar from "../components/PostsNavbar";
 import UserActivityNavbar from "../components/UserActivityNavbar";
 import axios from "axios";
 import { SERVER_URL } from "../utils/config";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 import { Button, TextField } from "@mui/material";
 
 const DraftPost = () => {
