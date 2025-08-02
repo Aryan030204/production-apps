@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import ContactUs from "./pages/ContactUs";
 import Login from "./pages/Login";
@@ -23,9 +23,6 @@ import ChatButton from "./components/ChatButton";
 
 function App() {
   const user = localStorage.getItem("user");
-  console.log("link: ", Link);
-  console.log("BrowserRouter: ", BrowserRouter);
-  
   
   return (
     <BrowserRouter>
