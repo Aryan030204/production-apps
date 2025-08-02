@@ -1,20 +1,27 @@
 import { useState } from "react";
 import chatbtn from "../assets/chatbtn.png";
 import ChatWindow from "./ChatWindow";
+
 const ChatButton = () => {
   const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <div className="flex fixed gap-2 w-[20rem] h-[29rem] top-[26rem] left-[90rem] z-50">
-      {isOpen && <ChatWindow setIsOpen={setIsOpen}/>}
+    <>
+      {isOpen && (
+        <div className="fixed bottom-[6.5rem] lg:bottom-[4rem] right-12 lg:right-6 sm:right-10 md:right-[8.5rem] z-50 w-[20rem] max-w-[90vw] h-[29rem]">
+          <ChatWindow setIsOpen={setIsOpen} />
+        </div>
+      )}
+
       <div
-        className="fixed flex items-center justify-center w-[4rem] h-[4rem] bg-red-800 hover:bg-red-400 left-[110rem] rounded-full top-[55rem] z-50 shadow-black shadow-lg hover:drop-shadow-xl hover:-translate-y-2 transition-all cursor-pointer"
+        className="fixed bottom-6 right-6 sm:right-10 md:right-16 z-50 flex items-center justify-center w-16 h-16 bg-red-800 hover:bg-red-400 rounded-full shadow-black shadow-lg hover:drop-shadow-xl hover:-translate-y-2 transition-all cursor-pointer"
         onClick={() => setIsOpen(!isOpen)}
       >
         <button>
-          <img src={chatbtn} alt="chat_avatar" className="w-[3rem]" />
+          <img src={chatbtn} alt="chat_avatar" className="w-12" />
         </button>
       </div>
-    </div>
+    </>
   );
 };
 

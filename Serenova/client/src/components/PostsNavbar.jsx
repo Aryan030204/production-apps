@@ -43,30 +43,30 @@ const PostsNavbar = () => {
     }
   };
   return (
-    <div className="flex flex-col w-[70%] p-4 gap-[1rem] justify-center text-center">
+    <div className="flex flex-col lg:w-[70%] p-4 gap-[1rem] justify-center text-center">
       <Link onClick={() => getTrendingStories()}>
-        <div className="flex w-full items-center justify-center bg-blue-600 text-white font-semibold p-1 rounded-lg cursor-pointer">
+        <div className="flex w-full items-center justify-center bg-blue-600 text-white font-semibold p-1 rounded-lg cursor-pointer lg:text-xl text-sm">
           <h1>Trending</h1>
         </div>
       </Link>
       <Link onClick={() => getMostLikedStories()}>
-        <div className="flex w-full items-center justify-center bg-blue-600 text-white font-semibold p-1 rounded-lg cursor-pointer">
+        <div className="flex w-full items-center justify-center bg-blue-600 text-white font-semibold p-1 rounded-lg cursor-pointer lg:text-xl text-sm">
           <h1>Most liked</h1>
         </div>
       </Link>
       <Link onClick={() => getMostViewedStories()}>
-        <div className="flex w-full items-center justify-center bg-blue-600 text-white font-semibold p-1 rounded-lg cursor-pointer">
+        <div className="flex w-full items-center justify-center bg-blue-600 text-white font-semibold p-1 rounded-lg cursor-pointer lg:text-xl text-sm">
           <h1>Most viewed</h1>
         </div>
       </Link>
       <Link onClick={() => getRecentStories()}>
-        <div className="flex w-full items-center justify-center bg-blue-600 text-white font-semibold p-1 rounded-lg cursor-pointer">
+        <div className="flex w-full items-center justify-center bg-blue-600 text-white font-semibold p-1 rounded-lg cursor-pointer lg:text-xl text-sm">
           <h1>Recent posts</h1>
         </div>
       </Link>
       {user && (
         <Link to={`${user._id}/saved`}>
-          <div className="flex w-full items-center justify-center bg-blue-600 text-white font-semibold p-1 rounded-lg cursor-pointer">
+          <div className="flex w-full items-center justify-center bg-blue-600 text-white font-semibold p-1 rounded-lg cursor-pointer lg:text-xl text-sm">
             <h1>Saved posts</h1>
           </div>
         </Link>

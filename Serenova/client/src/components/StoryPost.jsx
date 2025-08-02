@@ -3,7 +3,7 @@ import { Bookmark, Share2, ThumbsDown, ThumbsUp } from "lucide-react";
 import axios from "axios";
 import { SERVER_URL } from "../utils/config";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useSelector, useDispatch } from "react-redux";
@@ -12,18 +12,19 @@ import Pagination from "./Pagination";
 
 const StoryPost = () => {
   const stories = useSelector((state) => state.stories.stories);
+  console.log("component mounted");
   const [savedStories, setSavedStories] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const dispatch = useDispatch();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
-  const [loading, setLoading] = useState(true);
 
   const updateUser = async () => {
     try {
       const res = await axios.get(`${SERVER_URL}/profile`, {
         withCredentials: true,
       });
+
       setUser(res.data.data);
       localStorage.setItem("user", JSON.stringify(res.data.data));
     } catch (err) {
@@ -32,30 +33,28 @@ const StoryPost = () => {
   };
 
   const likeStory = async (id) => {
-    if (!user) return toast.error("Login required");
     try {
       await axios.patch(
         `${SERVER_URL}/stories/${id}/like/increment`,
         {},
         { withCredentials: true }
       );
-      updateUser();
-      getStories();
+      await updateUser(); // <-- update user first
+      await getStories();
     } catch (err) {
       console.log(err);
     }
   };
 
   const dislikeStory = async (id) => {
-    if (!user) return toast.error("Login required");
     try {
       await axios.patch(
         `${SERVER_URL}/stories/${id}/like/decrement`,
         {},
         { withCredentials: true }
       );
-      updateUser();
-      getStories();
+      await updateUser(); // <-- update user first
+      await getStories();
     } catch (err) {
       console.log(err);
     }
@@ -116,114 +115,132 @@ const StoryPost = () => {
       dispatch(setstories(res.data.stories));
       setPage(res.data.currentPage);
       setTotalPages(res.data.totalPages);
+      if (user !== null) {
+        getSavedStories();
+      }
     } catch (err) {
       console.error("Error fetching stories:", err);
     }
   };
 
   useEffect(() => {
-    const fetchAll = async () => {
-      setLoading(true);
-      await Promise.all([getStories(), getSavedStories(), updateUser()]);
-      setLoading(false);
-    };
-    fetchAll();
+    getStories();
   }, []);
 
-  if (loading)
-    return <div className="text-center w-full p-10">Loading stories...</div>;
-
-  if (!stories || stories.length === 0)
-    return <div className="text-center w-full p-10">No stories found.</div>;
-
   return (
-    <div className="flex flex-col justify-evenly w-full h-fit p-2 gap-6">
-      {stories.map((i) => {
-        const months = [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
-          "August",
-          "September",
-          "October",
-          "November",
-          "December",
-        ];
-        const dateParts = i.createdAt.split("T")[0].split("-");
-        const timePart = i.createdAt.split("T")[1].split(".")[0];
-        const formattedDate = `${dateParts[2]}th ${
-          months[+dateParts[1] - 1]
-        }, ${dateParts[0]} ${timePart}`;
+    <>
+      <div className="flex flex-col justify-evenly rounded-lg md:w-fit h-fit p-3 lg:w-[60%] gap-[2rem]">
+        {stories.map((i) => {
+          const months = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December",
+          ];
+          const dateParts = i.createdAt.split("T")[0].split("-");
+          const timePart = i.createdAt.split("T")[1].split(".")[0];
+          const formattedDate = `${dateParts[2]}th ${
+            months[+dateParts[1] - 1]
+          }, ${dateParts[0]} ${timePart}`;
 
-        const isLiked = user?.likedPosts?.includes(i._id);
-        const isDisliked = user?.dislikedPosts?.includes(i._id);
+          const isLiked = user?.likedPosts?.includes(i._id);
+          const isDisliked = user?.dislikedPosts?.includes(i._id);
 
-        return (
-          <div
-            key={i._id}
-            className="flex flex-col gap-2 p-4 bg-gray-800 rounded-3xl shadow-xl shadow-purple-500 text-white"
-          >
-            <Link
-              to={`stories/${i._id}`}
-              onClick={() => viewStory(i._id)}
-              className="w-full"
+          return (
+            <div
+              key={i._id}
+              className="flex flex-col w-[17rem] lg:w-fit max-h-[22rem] lg:h-fit gap-2 mt-2 p-3 bg-gray-800 rounded-3xl shadow-purple-500 shadow-xl text-white"
             >
-              <h1 className="text-yellow-400 text-xl md:text-2xl font-bold">
-                {i.title}
-              </h1>
-              <div className="flex gap-2 text-sm opacity-70 mt-1">
-                <p>Posted: {formattedDate}</p>
-                <span>•</span>
-                <p>{i.author}</p>
+              <Link to={`stories/${i._id}`} onClick={() => viewStory(i._id)}>
+                <div className="w-full flex flex-col lg:text-3xl text-lg font-bold text-start">
+                  <h1 className="text-yellow-400">{i.title}</h1>
+                  <div className="flex gap-2 items-center justify-start">
+                    <h1 className="text-sm  font-normal opacity-50 mt-1">
+                      Posted: {formattedDate}
+                    </h1>
+                    <h1 className="text-sm font-normal opacity-50 mt-1">
+                      {i.author}
+                    </h1>
+                  </div>
+                  <div className="w-full h-[1px] mt-3 mb-2 bg-white"></div>
+                </div>
+                <div className="w-full lg:text-lg text-sm text-start whitespace-pre-line my-1">
+                  <p className="overflow-hidden">
+                    {i.content.slice(
+                      0,
+                      i.content.length -
+                        i.content.length / 2 -
+                        i.content.length / 4
+                    )}... <Link to={`stories/${i._id}`} className="text-blue-100 underline">Read more</Link>
+                  </p>
+                </div>
+              </Link>
+
+              {/* navigation */}
+              <div className="flex gap-2 w-full justify-between p-1 text-sm lg:text-2xl items-center mt-1">
+                <div className="flex gap-2">
+                  <div className="flex gap-1 lg:text-lg">
+                    <button
+                      onClick={() => {
+                        if (!user) return toast.error("Login required");
+                        likeStory(i._id);
+                      }}
+                    >
+                      {isLiked ? <ThumbsUp fill="blue" /> : <ThumbsUp />}
+                    </button>
+                    <h1>{i.likes || 0}</h1>
+                  </div>
+                  <div className="flex gap-1 lg:text-lg">
+                    <button
+                      onClick={() => {
+                        if (!user) return toast.error("Login required");
+                        dislikeStory(i._id);
+                      }}
+                    >
+                      {isDisliked ? <ThumbsDown fill="red" /> : <ThumbsDown />}
+                    </button>
+                    <h1>{i.dislikes || 0}</h1>
+                  </div>
+                  <div className="flex gap-1 lg:text-lg">
+                    <button onClick={() => saveStory(i._id)}>
+                      {savedStories.includes(i._id) ? (
+                        <Bookmark fill="white" />
+                      ) : (
+                        <Bookmark />
+                      )}
+                    </button>
+                  </div>
+                  <div className="flex gap-1 justify-end lg:text-lg">
+                    <button>
+                      <Share2 />
+                    </button>
+                  </div>
+                </div>
+                <div className="flex">
+                  <h1 className="lg:text-lg opacity-50">{i.views} views</h1>
+                </div>
               </div>
-              <hr className="my-3 border-white/30" />
-              <p className="whitespace-pre-line text-base md:text-lg">
-                {i.content}
-              </p>
-            </Link>
-
-            <div className="flex flex-wrap justify-between items-center mt-3 gap-3">
-              <div className="flex gap-3 text-lg items-center">
-                <button onClick={() => likeStory(i._id)}>
-                  {isLiked ? <ThumbsUp fill="blue" /> : <ThumbsUp />}
-                </button>
-                <span>{i.likes || 0}</span>
-
-                <button onClick={() => dislikeStory(i._id)}>
-                  {isDisliked ? <ThumbsDown fill="red" /> : <ThumbsDown />}
-                </button>
-                <span>{i.dislikes || 0}</span>
-
-                <button onClick={() => saveStory(i._id)}>
-                  {savedStories.includes(i._id) ? (
-                    <Bookmark fill="white" />
-                  ) : (
-                    <Bookmark />
-                  )}
-                </button>
-
-                <button>
-                  <Share2 />
-                </button>
-              </div>
-              <span className="text-sm opacity-50">{i.views} views</span>
             </div>
-          </div>
-        );
-      })}
-      <ToastContainer />
-      <div className="w-full flex justify-center">
-        <Pagination
-          page={page}
-          totalPages={totalPages}
-          fetchStories={getStories}
-        />
+          );
+        })}
+        <ToastContainer />
+        <div className="w-full flex justify-center">
+          <Pagination
+            page={page}
+            totalPages={totalPages}
+            fetchStories={getStories}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
