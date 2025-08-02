@@ -4,7 +4,7 @@ import numpy as np
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=['https://serenova-eta.vercel.app'])
 
 with open("./model_coords.pkl", "rb") as file:
     model_coords = pickle.load(file)

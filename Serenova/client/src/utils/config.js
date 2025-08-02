@@ -1,5 +1,5 @@
 export const SERVER_URL = "https://serenova-server.onrender.com/api";
-export const PYTHON_APP_URL = "http://127.0.0.1:5000";
+export const PYTHON_APP_URL = "https://serenova-flask-api.onrender.com";
 export const EMAIL_TEMPLATE_ID = "template_aht6na8";
 export const EMAIL_SERVICE_ID = "service_1o4ehaj";
 export const EMAIL_PUBLIC_KEY = "NcCPchw9egU4lcpDp";
