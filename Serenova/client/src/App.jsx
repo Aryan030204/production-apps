@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router";
+import { BrowserRouter, Route, Routes, Link } from "react-router";
 import Home from "./pages/Home";
 import ContactUs from "./pages/ContactUs";
 import Login from "./pages/Login";
@@ -24,10 +24,9 @@ import ChatButton from "./components/ChatButton";
 function App() {
   const user = localStorage.getItem("user");
   console.log("link: ", Link);
-  console.log("browserRouter: ", BrowserRouter);
+  console.log("BrowserRouter: ", BrowserRouter);
   
   
-
   return (
     <BrowserRouter>
       <div className="flex flex-col h-[100vh]">
