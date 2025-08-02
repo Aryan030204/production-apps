@@ -3,7 +3,7 @@ import StoryPost from "../components/StoryPost";
 import UserActivityNavbar from "../components/UserActivityNavbar";
 
 const Stories = () => {
-  const user = localStorage.getItem("user");
+  const user = JSON.parse(localStorage.getItem("user")); // safer than using raw string
 
   return (
     <div className="flex flex-col w-full justify-center items-center p-2 bg-purple-200">
@@ -20,12 +20,10 @@ const Stories = () => {
       </div>
 
       <div className="flex flex-col lg:flex-row w-full p-1 gap-4">
-        {/* posts section */}
         <div className="w-full lg:w-[80%] flex flex-col gap-2 rounded-lg pb-5 pl-2">
           <StoryPost />
         </div>
 
-        {/* navigation section */}
         <div className="w-full lg:w-[20%] flex flex-col bg-purple-900 rounded-2xl gap-10 h-auto lg:h-[40rem] items-center justify-evenly shadow-purple-500 shadow-xl p-4">
           <PostsNavbar />
           {user && <UserActivityNavbar />}

@@ -17,6 +17,7 @@ const StoryPost = () => {
   const [totalPages, setTotalPages] = useState(1);
   const dispatch = useDispatch();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+  const [loading, setLoading] = useState(true);
 
   const updateUser = async () => {
     try {
@@ -31,28 +32,28 @@ const StoryPost = () => {
   };
 
   const likeStory = async (id) => {
+    if (!user) return toast.error("Login required");
     try {
       await axios.patch(
         `${SERVER_URL}/stories/${id}/like/increment`,
         {},
         { withCredentials: true }
       );
-      await updateUser();
-      await getStories();
+      updateUser(); // no getStories here
     } catch (err) {
       console.log(err);
     }
   };
 
   const dislikeStory = async (id) => {
+    if (!user) return toast.error("Login required");
     try {
       await axios.patch(
         `${SERVER_URL}/stories/${id}/like/decrement`,
         {},
         { withCredentials: true }
       );
-      await updateUser();
-      await getStories();
+      updateUser();
     } catch (err) {
       console.log(err);
     }
@@ -113,23 +114,42 @@ const StoryPost = () => {
       dispatch(setstories(res.data.stories));
       setPage(res.data.currentPage);
       setTotalPages(res.data.totalPages);
-      getSavedStories();
     } catch (err) {
       console.error("Error fetching stories:", err);
     }
   };
 
   useEffect(() => {
-    getStories();
-    updateUser();
+    const fetchAll = async () => {
+      setLoading(true);
+      await Promise.all([getStories(), getSavedStories(), updateUser()]);
+      setLoading(false);
+    };
+    fetchAll();
   }, []);
+
+  if (loading)
+    return <div className="text-center w-full p-10">Loading stories...</div>;
+
+  if (!stories || stories.length === 0)
+    return <div className="text-center w-full p-10">No stories found.</div>;
 
   return (
     <div className="flex flex-col justify-evenly w-full h-fit p-2 gap-6">
       {stories.map((i) => {
         const months = [
-          "January", "February", "March", "April", "May", "June",
-          "July", "August", "September", "October", "November", "December",
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
         ];
         const dateParts = i.createdAt.split("T")[0].split("-");
         const timePart = i.createdAt.split("T")[1].split(".")[0];
@@ -166,22 +186,12 @@ const StoryPost = () => {
 
             <div className="flex flex-wrap justify-between items-center mt-3 gap-3">
               <div className="flex gap-3 text-lg items-center">
-                <button
-                  onClick={() => {
-                    if (!user) return toast.error("Login required");
-                    likeStory(i._id);
-                  }}
-                >
+                <button onClick={() => likeStory(i._id)}>
                   {isLiked ? <ThumbsUp fill="blue" /> : <ThumbsUp />}
                 </button>
                 <span>{i.likes || 0}</span>
 
-                <button
-                  onClick={() => {
-                    if (!user) return toast.error("Login required");
-                    dislikeStory(i._id);
-                  }}
-                >
+                <button onClick={() => dislikeStory(i._id)}>
                   {isDisliked ? <ThumbsDown fill="red" /> : <ThumbsDown />}
                 </button>
                 <span>{i.dislikes || 0}</span>
