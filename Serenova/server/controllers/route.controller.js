@@ -121,7 +121,7 @@ const getSafeRoutes = async (req, res) => {
           const [lat2, lon2] = coords[coords.length - 1];
 
           // ML safety score prediction
-          const mlRes = await axios.post("http://localhost:5000/predict", {
+          const mlRes = await axios.post("https://serenova-server.onrender.com/predict", {
             lat1,
             lon1,
             lat2,
