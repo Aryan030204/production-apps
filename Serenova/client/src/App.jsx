@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react"
 import Home from "./pages/Home";
 import ContactUs from "./pages/ContactUs";
 import Login from "./pages/Login";
@@ -49,6 +50,7 @@ function App() {
           <Route path="/user/posts" element={<MyPosts />} />
           <Route path="/stories/:id/edit" element={<EditPost />} />
         </Routes>
+        <Analytics/>
         <Footer />
       </div>
     </BrowserRouter>
