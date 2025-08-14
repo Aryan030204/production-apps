@@ -179,14 +179,7 @@ const StoryPost = () => {
                       i.content.length -
                         i.content.length / 2 -
                         i.content.length / 4
-                    )}
-                    ...{" "}
-                    <Link
-                      to={`stories/${i._id}`}
-                      className="text-blue-100 underline"
-                    >
-                      Read more
-                    </Link>
+                    )}... <Link to={`stories/${i._id}`} className="text-blue-100 underline">Read more</Link>
                   </p>
                 </div>
               </Link>
