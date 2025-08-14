@@ -19,14 +19,14 @@ const HeroBanner = () => {
   }, []);
 
   return (
-    <div className="flex flex-col lg:flex-row bg-purple-400 w-full lg:h-[40vh] md:h-[17rem] px-4 py-6 md:py-0">
+    <div className="flex flex-col lg:flex-row bg-purple-950 w-full lg:h-[40vh] md:h-[17rem] px-4 py-6 md:py-0">
       {/* Text Section */}
       <div className="w-full lg:w-[60%] flex flex-col justify-center">
-        <h1 className="text-white font-bold lg:text-7xl md:text-3xl text-2xl ml-4 my-2 drop-shadow-[0px_0px_1px_black]">
+        <h1 className="text-white font-bold lg:text-7xl md:text-3xl text-2xl ml-4 my-2 drop-shadow-[3px_3px_3px_black]">
           <span className="text-red-500">THEY</span> BUILT CAGES, <br />
           SHE GREW <span className="text-blue-600">WINGS...</span>
         </h1>
-        <p className="text-white font-bold ml-4 mt-2 md:text-sm text-xs drop-shadow-[0px_0px_1px_black]">
+        <p className="text-white font-bold ml-4 mt-2 md:text-sm text-xs drop-shadow-[1px_2px_1px_black]">
           Protection at your fingertips, <br />
           because every woman deserves to feel secure!
         </p>
@@ -42,12 +42,12 @@ const HeroBanner = () => {
         <img
           src={hero2}
           alt="hero2"
-          className="hero2 absolute lg:top-[11rem] lg:left-[7rem] hidden lg:block w-[20rem] md:w-[18rem] sm:w-[16rem] h-auto"
+          className="hero2 absolute lg:top-[11rem] lg:left-[7rem] hidden lg:block w-[20rem] md:w-[18rem] sm:w-[16rem] h-auto drop-shadow-[2px_1px_1px_black]"
         />
         <img
           src={hero1}
           alt="hero1"
-          className="hero1 relative lg:bottom-[1rem] lg:h-[32rem] md:h-[22rem] hidden lg:block h-[18rem] lg:left-[10rem]"
+          className="hero1 relative lg:bottom-[1rem] lg:h-[32rem] md:h-[22rem] hidden lg:block h-[18rem] lg:left-[10rem] drop-shadow-[2px_2px_1px_black]"
         />
       </div>
     </div>

@@ -17,10 +17,12 @@ const EmergencyNums = ({ nums }) => {
       {nums.map(([title, number], index) => (
         <div
           key={index}
-          className="flex flex-col items-center bg-purple-300 rounded-2xl p-5 shadow-md"
+          className="flex flex-col items-center bg-purple-900 text-white rounded-2xl p-5 shadow-md"
         >
           <h1 className="font-bold text-xl text-center">{title}</h1>
-          <h2 className="text-red-600 font-semibold mt-1 text-lg">{number}</h2>
+          <h2 className="text-green-300 font-semibold mt-1 text-lg">
+            {number}
+          </h2>
 
           <button
             onClick={() => copyNumber(number, index)}

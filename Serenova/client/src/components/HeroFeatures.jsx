@@ -47,11 +47,11 @@ const HeroFeatures = () => {
         Our Features
       </h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-7xl">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full max-w-7xl">
         {features.map((feature, idx) => (
           <div
             key={idx}
-            className="flex flex-col items-center text-center p-6 rounded-3xl border-2 border-black text-white bg-gradient-to-tr from-purple-600 to-purple-500 transition-transform hover:scale-105 hover:shadow-xl cursor-pointer min-h-[16rem]"
+            className="flex flex-col items-center text-center p-6 rounded-3xl border-2 transition-all ease-in-out duration-200 hover:drop-shadow-[0px_0px_10px_black] text-white bg-gradient-to-tr from-purple-950 to-purple-800 hover:scale-105 hover:shadow-xl cursor-pointer min-h-[16rem]"
           >
             <div className="mb-4 text-white">{feature.icon}</div>
             <h2 className="text-xl font-bold mb-2">{feature.title}</h2>

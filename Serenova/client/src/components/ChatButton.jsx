@@ -8,13 +8,13 @@ const ChatButton = () => {
   return (
     <>
       {isOpen && (
-        <div className="fixed bottom-[6.5rem] lg:bottom-[6rem] right-12 lg:right-24 sm:right-10 md:right-[8.5rem] z-50 w-[20rem] max-w-[90vw] h-[29rem]">
+        <div className="fixed bottom-[6.5rem] lg:bottom-[6rem] right-12 lg:right-24 sm:right-10 md:right-[8.5rem] z-50 w-[20rem] max-w-[80vw] h-[29rem]">
           <ChatWindow setIsOpen={setIsOpen} />
         </div>
       )}
 
       <div
-        className="fixed bottom-6 right-6 sm:right-10 md:right-16 z-50 flex items-center justify-center w-16 h-16 bg-red-800 hover:bg-red-400 rounded-full shadow-black shadow-lg hover:drop-shadow-xl hover:-translate-y-2 transition-all cursor-pointer"
+        className="fixed bottom-6 right-6 sm:right-10 md:right-16 z-50 flex items-center justify-center w-16 h-16 bg-purple-900 hover:bg-purple-950 rounded-full shadow-purple-500 shadow-lg hover:drop-shadow-xl hover:-translate-y-2 transition-all cursor-pointer"
         onClick={() => setIsOpen(!isOpen)}
       >
         <button>
