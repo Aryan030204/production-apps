@@ -19,12 +19,12 @@ const Stories = () => {
           </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row w-full p-1 gap-4">
+        <div className="flex flex-col sm:justify-center lg:flex-row w-full p-1 gap-4">
           <div className="w-full lg:w-[20%] flex flex-col bg-purple-900 rounded-2xl gap-10 h-auto lg:h-[40rem] items-center justify-evenly shadow-purple-500 shadow-xl p-4">
             <PostsNavbar />
             {user && <UserActivityNavbar />}
           </div>
-          <div className="w-full lg:w-[80%] flex flex-col gap-2 rounded-lg pb-5 pl-2">
+          <div className="w-full flex flex-col items-center gap-2 rounded-lg p-5 pl-2">
             <StoryPost />
           </div>
         </div>

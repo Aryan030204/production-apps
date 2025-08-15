@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import RouteDetails from "../components/RouteDetails";
 import SafeRoute from "../components/SafeRoute";
+import { FaHandshake } from "react-icons/fa";
 
 const RoutePlanner = () => {
   return (
@@ -9,14 +10,18 @@ const RoutePlanner = () => {
       <SafeRoute />
       <h1 className="text-center text-lg">
         want to know how we calculate safety scores ?{" "}
-        <Link to={"/routecalculation"} className="text-blue-500 underline">
+        <Link to={"/routecalculation"} className="text-blue-500 hover:underline">
           Know more
         </Link>{" "}
         <br />
-        <p className="text-center">
-          Try{" "}
-          <Link to={"/routescorer"} className="text-blue-500 underline">
-            Manual Safety score calculator
+        <p className="text-center flex items-center justify-center">
+          {" "}
+          <span className="mx-2">
+            <FaHandshake size={20} />
+          </span>{" "}
+          Help us{" "}
+          <Link to={"/routescorer"} className="text-blue-500 hover:underline mx-1">
+            grow
           </Link>{" "}
         </p>
       </h1>
