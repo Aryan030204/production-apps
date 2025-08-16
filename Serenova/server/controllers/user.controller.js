@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 const User = require("../models/user.model");
 const Story = require("../models/story.model");
+const fs = require("fs");
+const path = require("path");
+const {parse} = require("csv-parse/sync")
+const {stringify} = require("csv-stringify/sync")
 
 // Save a story post
 const savePost = async (req, res) => {
@@ -289,6 +293,7 @@ const saveDraft = async (req, res) => {
   }
 };
 
+// Get a draft story by Id
 const getDraftbyId = async (req, res) => {
   try {
     const { id } = req.params;
@@ -316,6 +321,58 @@ const getDraftbyId = async (req, res) => {
   }
 };
 
+// Add route to model database
+const addRoute = async (req, res) => {
+  try {
+    const formdata = req.body;
+
+    const mappedData = {
+      City: formdata.destination || "Unknown",
+      Latitude: formdata.destLat || "",
+      Longitude: formdata.destLong || "",
+      "Light Intensity": formdata.lightIntensity ? formdata.lightIntensity + "%" : "",
+      "Traffic Density": formdata.trafficDensity || "",
+      "Crowd Density": formdata.crowdDensity || "",
+      "Crime Rate": formdata.crimeRate || "",
+      "Accident Rate": formdata.accidentRate || "",
+      "Crime against women": formdata.crimeAgainstWomen || "",
+      "Safety score": formdata.safetyScore || "",
+    };
+
+    const projectRoot = path.resolve(__dirname, "../../");
+    const file_path = path.join(projectRoot, "ai/datasets/dataset.csv");
+
+    let data = [];
+    if (fs.existsSync(file_path)) {
+      const file = fs.readFileSync(file_path, "utf8");
+      data = parse(file, {
+        columns: true,    // use first row as header
+        skip_empty_lines: true,
+      });
+    }
+
+    data.push(mappedData);
+
+    const csvContent = stringify(data, {
+      header: true,
+    });
+
+    fs.writeFileSync(file_path, csvContent, "utf8");
+
+    res.json({
+      message: "Submission received",
+      data: mappedData,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong",
+      error: err.message,
+    });
+  }
+};
+
 module.exports = {
   savePost,
   unsavePost,
@@ -325,5 +382,6 @@ module.exports = {
   updatePost,
   getDrafts,
   saveDraft,
-  getDraftbyId
+  getDraftbyId,
+  addRoute
 };

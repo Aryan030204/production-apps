@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { PYTHON_APP_URL } from "../utils/config";
+import { PYTHON_APP_URL, SERVER_URL } from "../utils/config";
 
 const RouteScorerForm = () => {
   const [formData, setFormData] = useState({
@@ -95,6 +95,11 @@ const RouteScorerForm = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleSubmit = async (data) => {
+    await axios.post(SERVER_URL+"/route/add", data);
+    alert("form submitted")
+  }
+
   // ----------------- Submit -----------------
   const calculateSafetyScore = async (e) => {
     e.preventDefault();
@@ -114,6 +119,10 @@ const RouteScorerForm = () => {
       });
 
       setSafetyScore(res.data.safety_score);
+      await handleSubmit({
+        ...formData,
+        safetyScore: res.data.safety_score
+      });
     } catch (err) {
       console.error("Prediction error:", err);
       alert("Failed to calculate safety score. Try again.");
