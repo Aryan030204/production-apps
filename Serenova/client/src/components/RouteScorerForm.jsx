@@ -96,9 +96,8 @@ const RouteScorerForm = () => {
   };
 
   const handleSubmit = async (data) => {
-    await axios.post(SERVER_URL+"/route/add", data);
-    alert("form submitted")
-  }
+    await axios.post(SERVER_URL + "/route/add", data);
+  };
 
   // ----------------- Submit -----------------
   const calculateSafetyScore = async (e) => {
@@ -121,7 +120,7 @@ const RouteScorerForm = () => {
       setSafetyScore(res.data.safety_score);
       await handleSubmit({
         ...formData,
-        safetyScore: res.data.safety_score
+        safetyScore: res.data.safety_score,
       });
     } catch (err) {
       console.error("Prediction error:", err);
