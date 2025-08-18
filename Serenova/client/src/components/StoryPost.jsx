@@ -219,7 +219,10 @@ const StoryPost = () => {
                     </button>
                   </div>
                   <div className="flex gap-1 justify-end lg:text-lg">
-                    <button>
+                    <button onClick={() => {
+                      navigator.clipboard.writeText(`${SERVER_URL}/stories/${i._id}`);
+                      toast.success("Post link copied to clipboard");
+                    }}>
                       <Share2 />
                     </button>
                   </div>
