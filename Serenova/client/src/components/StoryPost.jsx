@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Bookmark, Share2, ThumbsDown, ThumbsUp } from "lucide-react";
 import axios from "axios";
-import { SERVER_URL } from "../utils/config";
+import { PRODUCTION_URL, SERVER_URL } from "../utils/config";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { toast, ToastContainer } from "react-toastify";
@@ -220,7 +220,7 @@ const StoryPost = () => {
                   </div>
                   <div className="flex gap-1 justify-end lg:text-lg">
                     <button onClick={() => {
-                      navigator.clipboard.writeText(`${SERVER_URL}/blog/stories/${i._id}`);
+                      navigator.clipboard.writeText(`${PRODUCTION_URL}/blog/stories/${i._id}`);
                       toast.success("Post link copied to clipboard");
                     }}>
                       <Share2 />
