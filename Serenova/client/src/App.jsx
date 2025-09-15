@@ -1,5 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Analytics } from "@vercel/analytics/react"
+import { BrowserRouter, Route, Routes } from "react-router";
 import Home from "./pages/Home";
 import ContactUs from "./pages/ContactUs";
 import Login from "./pages/Login";
@@ -21,13 +20,15 @@ import EditPost from "./pages/EditPost";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ChatButton from "./components/ChatButton";
+import { useSelector } from "react-redux";
+import StoryPost from "./components/StoryPost";
 
 function App() {
-  const user = localStorage.getItem("user");
-  
+  const user = useSelector((state) => state.user.user);
+
   return (
     <BrowserRouter>
-      <div className="flex flex-col h-[100vh]">
+      <div className="flex flex-col min-h-screen">
         <Header />
         <ChatButton />
         <Routes>
@@ -49,8 +50,8 @@ function App() {
           <Route path="/user/draft/:id" element={<DraftPost />} />
           <Route path="/user/posts" element={<MyPosts />} />
           <Route path="/stories/:id/edit" element={<EditPost />} />
+          <Route path="/test" element={<StoryPost />} />
         </Routes>
-        <Analytics/>
         <Footer />
       </div>
     </BrowserRouter>

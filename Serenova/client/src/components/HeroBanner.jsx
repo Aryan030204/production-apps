@@ -19,35 +19,35 @@ const HeroBanner = () => {
   }, []);
 
   return (
-    <div className="flex flex-col lg:flex-row bg-purple-950 w-full lg:h-[40vh] md:h-[17rem] px-4 py-6 md:py-0">
+    <div className="relative overflow-visible flex flex-col lg:flex-row bg-purple-950 w-full min-h-[16rem] lg:min-h-[40vh] px-4 py-6 md:py-8">
       {/* Text Section */}
       <div className="w-full lg:w-[60%] flex flex-col justify-center">
-        <h1 className="text-white font-bold lg:text-7xl md:text-3xl text-2xl ml-4 my-2 drop-shadow-[3px_3px_3px_black]">
+        <h1 className="text-white font-bold lg:text-7xl md:text-4xl text-2xl ml-2 sm:ml-4 my-2 drop-shadow-[3px_3px_3px_black] leading-tight">
           <span className="text-red-500">THEY</span> BUILT CAGES, <br />
           SHE GREW <span className="text-blue-600">WINGS...</span>
         </h1>
-        <p className="text-white font-bold ml-4 mt-2 md:text-sm text-xs drop-shadow-[1px_2px_1px_black]">
+        <p className="text-white font-bold ml-2 sm:ml-4 mt-2 md:text-base text-sm drop-shadow-[1px_2px_1px_black]">
           Protection at your fingertips, <br />
           because every woman deserves to feel secure!
         </p>
-        <div className="w-fit bg-white font-semibold px-4 py-2 mt-4 ml-4 rounded-3xl shadow-lg transition-all duration-300 hover:text-white hover:bg-black">
-          <Link to="/login" className="text-sm md:text-base">
+        <div className="w-fit bg-white font-semibold px-4 py-2 mt-4 ml-2 sm:ml-4 rounded-3xl shadow-lg transition-all duration-300 hover:text-white hover:bg-black">
+          <Link to="/login" className="text-base md:text-lg">
             <button>JOIN NOW</button>
           </Link>
         </div>
       </div>
 
       {/* Image Section */}
-      <div className="w-full lg:w-[40%] lg:flex justify-center items-center relative mt-6 lg:mt-0">
+      <div className="w-full lg:w-[40%] flex justify-center items-center relative mt-6 lg:mt-0 z-10 pointer-events-none">
         <img
           src={hero2}
           alt="hero2"
-          className="hero2 absolute lg:top-[11rem] lg:left-[7rem] hidden lg:block w-[20rem] md:w-[18rem] sm:w-[16rem] h-auto drop-shadow-[2px_1px_1px_black]"
+          className="hero2 absolute hidden md:block z-20 w-[11rem] md:w-[16rem] lg:w-[20rem] h-auto md:left-[32rem] lg:left-36 md:bottom-[-3rem] lg:-bottom-8 drop-shadow-[0_12px_20px_rgba(0,0,0,0.55)]"
         />
         <img
           src={hero1}
           alt="hero1"
-          className="hero1 relative lg:bottom-[1rem] lg:h-[32rem] md:h-[22rem] hidden lg:block h-[18rem] lg:left-[10rem] drop-shadow-[2px_2px_1px_black]"
+          className="hero1 absolute hidden md:block z-10 h-[14rem] md:h-[22rem] lg:h-[32rem] md:left-[42rem] lg:left-[22rem] md:-bottom-[4rem] lg:-bottom-16 drop-shadow-[0_16px_28px_rgba(0,0,0,0.6)]"
         />
       </div>
     </div>

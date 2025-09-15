@@ -43,19 +43,20 @@ const features = [
 const HeroFeatures = () => {
   return (
     <div className="flex flex-col w-full items-center px-4 py-8">
-      <h1 className="text-4xl lg:text-5xl font-bold text-center mb-12">
+      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-8 sm:mb-12">
         Our Features
       </h1>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full max-w-7xl">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 w-full max-w-7xl reveal" id="features-grid">
         {features.map((feature, idx) => (
           <div
             key={idx}
-            className="flex flex-col items-center text-center p-6 rounded-3xl border-2 transition-all ease-in-out duration-200 hover:drop-shadow-[0px_0px_10px_black] text-white bg-gradient-to-tr from-purple-950 to-purple-800 hover:scale-105 hover:shadow-xl cursor-pointer min-h-[16rem]"
+            className="flex flex-col items-center text-center p-6 rounded-3xl border-2 transition-all ease-in-out duration-200 hover:drop-shadow-[0px_0px_10px_black] text-white bg-gradient-to-tr from-purple-950 to-purple-800 hover:scale-105 hover:shadow-xl cursor-pointer min-h-[14rem] sm:min-h-[16rem] opacity-0"
+            style={{ animationDelay: `${idx * 80}ms` }}
           >
-            <div className="mb-4 text-white">{feature.icon}</div>
-            <h2 className="text-xl font-bold mb-2">{feature.title}</h2>
-            <p className="font-sans text-lg">{feature.desc}</p>
+            <div className="mb-3 sm:mb-4 text-white">{feature.icon}</div>
+            <h2 className="text-lg sm:text-xl font-bold mb-2">{feature.title}</h2>
+            <p className="font-sans text-sm sm:text-base">{feature.desc}</p>
           </div>
         ))}
       </div>

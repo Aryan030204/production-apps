@@ -7,9 +7,13 @@ const Home = () => {
   
   return (
     <div className="flex flex-col items-center justify-center mt-[6rem] gap-[2rem] bg-gray-50">
-      <HeroBanner />
+      <div className="w-full reveal">
+        <HeroBanner />
+      </div>
       <HeroFeatures />
-      <WhatToDo />
+      <div className="w-full reveal">
+        <WhatToDo />
+      </div>
     </div>
   );
 };

@@ -8,7 +8,7 @@ const ChatButton = () => {
   return (
     <>
       {isOpen && (
-        <div className="fixed bottom-[6.5rem] lg:bottom-[6rem] right-12 lg:right-24 sm:right-10 md:right-[8.5rem] z-50 w-[20rem] max-w-[80vw] h-[29rem]">
+        <div className="fixed bottom-[6.5rem] lg:bottom-[6rem] right-4 sm:right-10 md:right-[8.5rem] lg:right-24 z-50 w-[90vw] sm:w-[24rem] max-w-[24rem] h-[70vh] sm:h-[29rem]">
           <ChatWindow setIsOpen={setIsOpen} />
         </div>
       )}

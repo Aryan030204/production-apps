@@ -86,7 +86,7 @@ const ChatWindow = ({ setIsOpen }) => {
 
   return (
     <div
-      className={`flex flex-col justify-between w-full h-full bg-red-200 rounded-2xl rounded-br-none shadow-2xl drop-shadow-2xl transition-all duration-300 ease-in-out ${
+      className={`flex flex-col justify-between w-full h-full max-h-[70vh] sm:max-h-full bg-red-200 rounded-2xl rounded-br-none shadow-2xl drop-shadow-2xl transition-all duration-300 ease-in-out ${
         show ? "opacity-100 scale-100" : "opacity-0 scale-90"
       }`}
     >
@@ -105,7 +105,7 @@ const ChatWindow = ({ setIsOpen }) => {
       </div>
 
       {/* Messages */}
-      <div className="h-[24rem] overflow-y-auto p-3 space-y-2">
+      <div className="flex-1 min-h-0 overflow-y-auto p-3 space-y-2">
         {messages.map((i, j) =>
           i.sender === "bot" ? (
             <div key={j} className="flex items-start gap-2">
@@ -126,7 +126,7 @@ const ChatWindow = ({ setIsOpen }) => {
       </div>
 
       {/* Input */}
-      <div className="flex items-center gap-2 p-2 border-t">
+      <div className="flex items-center gap-2 p-2 border-t sticky bottom-0 bg-red-200">
         <input
           type="text"
           placeholder="Type your message..."
