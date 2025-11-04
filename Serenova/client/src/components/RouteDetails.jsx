@@ -140,7 +140,7 @@ const RouteDetails = () => {
       const [destLat, destLon] = coordinates.split(",").map(Number);
       const [currentNameRes, destNameRes] = await Promise.all([
         axios.get(
-          `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&appid=${OPENWEATHER_API_KEY}`
+          `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&appid=${OPENWEATHER_API_KEY}`
         ),
 
         axios.get(
