@@ -28,7 +28,7 @@ const RoutesPage = () => {
 
   useEffect(() => {
     getRoutes();
-  }, [routes]);
+  }, []);
   return (
     <div className="flex flex-col md:w-1/2 items-center justify-center self-center my-10 p-5">
       <div>
