@@ -144,7 +144,7 @@ const RouteDetails = () => {
         ),
 
         axios.get(
-          `http://api.openweathermap.org/geo/1.0/reverse?lat=${destLat}&lon=${destLon}&appid=${OPENWEATHER_API_KEY}`
+          `https://api.openweathermap.org/geo/1.0/reverse?lat=${destLat}&lon=${destLon}&appid=${OPENWEATHER_API_KEY}`
         ),
       ]);
       await axios.post(
