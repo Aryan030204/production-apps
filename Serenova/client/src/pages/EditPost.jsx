@@ -4,21 +4,18 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { SERVER_URL } from "../utils/config";
 import { useParams } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const EditPost = () => {
   const [post, setPost] = useState({ title: "", content: "" });
   const { id } = useParams();
-  
+
   const getPost = async () => {
     try {
-      const res = await axios.get(
-        `${SERVER_URL}/user/stories/drafts/${id}`,
-        {
-          withCredentials: true,
-        }
-      );
+      const res = await axios.get(`${SERVER_URL}/user/stories/drafts/${id}`, {
+        withCredentials: true,
+      });
       setPost(res.data.draft);
     } catch (err) {
       console.error("Failed to fetch draft:", err);
@@ -70,7 +67,6 @@ const EditPost = () => {
           SAVE
         </Button>
       </div>
-      <ToastContainer />
     </div>
   );
 };

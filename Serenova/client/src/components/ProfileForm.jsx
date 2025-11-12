@@ -4,7 +4,7 @@ import axios from "axios";
 import { SERVER_URL } from "../utils/config";
 import male from "../assets/male.png";
 import female from "../assets/female.png";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const ProfileForm = () => {
@@ -14,7 +14,6 @@ const ProfileForm = () => {
     age: "",
     gender: "",
   });
-  
 
   const [saved, setSaved] = useState(false);
 
@@ -101,8 +100,6 @@ const ProfileForm = () => {
       >
         {saved ? "Saved!" : "Save Profile"}
       </button>
-
-      <ToastContainer position="top-center" autoClose={2000} />
     </div>
   );
 };

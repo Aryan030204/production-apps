@@ -4,7 +4,7 @@ import axios from "axios";
 import { SERVER_URL } from "../utils/config";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useSelector, useDispatch } from "react-redux";
 import { setstories } from "../utils/storiesSlice";
@@ -126,8 +126,7 @@ const StoryPost = () => {
       }, 0);
     } catch (err) {
       console.error("Error fetching stories:", err);
-    }
-    finally {
+    } finally {
       setLoading(false);
     }
   };
@@ -138,119 +137,147 @@ const StoryPost = () => {
 
   return (
     <>
-      <div ref={listRef} className="flex flex-col justify-evenly rounded-lg md:w-fit h-fit p-3 lg:w-[60%] gap-[2rem] reveal" id="stories-list">
+      <div
+        ref={listRef}
+        className="flex flex-col justify-evenly rounded-lg md:w-fit h-fit p-3 lg:w-[60%] gap-[2rem] reveal"
+        id="stories-list"
+      >
         {loading && (
-          <div className="text-center text-sm opacity-70">Loading stories...</div>
+          <div className="text-center text-sm opacity-70">
+            Loading stories...
+          </div>
         )}
         {!loading && stories.length === 0 && (
-          <div className="text-center text-sm opacity-70">No stories found for this page.</div>
+          <div className="text-center text-sm opacity-70">
+            No stories found for this page.
+          </div>
         )}
-        {!loading && stories.map((i, idx) => {
-          const months = [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-            "August",
-            "September",
-            "October",
-            "November",
-            "December",
-          ];
-          const dateParts = i.createdAt.split("T")[0].split("-");
-          const timePart = i.createdAt.split("T")[1].split(".")[0];
-          const formattedDate = `${dateParts[2]}th ${
-            months[+dateParts[1] - 1]
-          }, ${dateParts[0]} ${timePart}`;
+        {!loading &&
+          stories.map((i, idx) => {
+            const months = [
+              "January",
+              "February",
+              "March",
+              "April",
+              "May",
+              "June",
+              "July",
+              "August",
+              "September",
+              "October",
+              "November",
+              "December",
+            ];
+            const dateParts = i.createdAt.split("T")[0].split("-");
+            const timePart = i.createdAt.split("T")[1].split(".")[0];
+            const formattedDate = `${dateParts[2]}th ${
+              months[+dateParts[1] - 1]
+            }, ${dateParts[0]} ${timePart}`;
 
-          const isLiked = user?.likedPosts?.includes(i._id);
-          const isDisliked = user?.dislikedPosts?.includes(i._id);
+            const isLiked = user?.likedPosts?.includes(i._id);
+            const isDisliked = user?.dislikedPosts?.includes(i._id);
 
-          return (
-            <div
-              key={i._id}
-              className="flex flex-col w-[17rem] lg:w-fit max-h-[22rem] lg:h-fit gap-2 mt-2 p-3 bg-gray-800 rounded-3xl shadow-xl text-white animate-fade-up"
-              style={{ animationDelay: `${idx * 80}ms` }}
-            >
-              <Link to={`stories/${i._id}`} onClick={() => viewStory(i._id)}>
-                <div className="w-full flex flex-col lg:text-3xl text-lg font-bold text-start">
-                  <h1 className="text-yellow-400">{i.title}</h1>
-                  <div className="flex gap-2 items-center justify-start">
-                    <h1 className="text-sm  font-normal opacity-50 mt-1">
-                      Posted: {formattedDate}
-                    </h1>
-                    <h1 className="text-sm font-normal opacity-50 mt-1">
-                      {i.author}
-                    </h1>
+            return (
+              <div
+                key={i._id}
+                className="flex flex-col w-[17rem] lg:w-fit max-h-[22rem] lg:h-fit gap-2 mt-2 p-3 bg-gray-800 rounded-3xl shadow-xl text-white animate-fade-up"
+                style={{ animationDelay: `${idx * 80}ms` }}
+              >
+                <Link to={`stories/${i._id}`} onClick={() => viewStory(i._id)}>
+                  <div className="w-full flex flex-col lg:text-3xl text-lg font-bold text-start">
+                    <h1 className="text-yellow-400">{i.title}</h1>
+                    <div className="flex gap-2 items-center justify-start">
+                      <h1 className="text-sm  font-normal opacity-50 mt-1">
+                        Posted: {formattedDate}
+                      </h1>
+                      <h1 className="text-sm font-normal opacity-50 mt-1">
+                        {i.author}
+                      </h1>
+                    </div>
+                    <div className="w-full h-[1px] mt-3 mb-2 bg-white"></div>
                   </div>
-                  <div className="w-full h-[1px] mt-3 mb-2 bg-white"></div>
-                </div>
-                <div className="w-full lg:text-lg text-sm text-start whitespace-pre-line my-1">
-                  <p className="overflow-hidden">
-                    {i.content.slice(
-                      0,
-                      i.content.length -
-                        i.content.length / 2 -
-                        i.content.length / 4
-                    )}... <Link to={`stories/${i._id}`} className="text-blue-100 underline">Read more</Link>
-                  </p>
-                </div>
-              </Link>
-
-              {/* navigation */}
-              <div className="flex gap-2 w-full justify-between p-1 text-sm lg:text-2xl items-center mt-1">
-                <div className="flex gap-2">
-                  <div className="flex gap-1 lg:text-lg">
-                    <button
-                      onClick={() => {
-                        if (!user) return toast.error("Login required");
-                        likeStory(i._id);
-                      }}
-                    >
-                      {isLiked ? <ThumbsUp fill="blue" /> : <ThumbsUp />}
-                    </button>
-                    <h1>{i.likes || 0}</h1>
-                  </div>
-                  <div className="flex gap-1 lg:text-lg">
-                    <button
-                      onClick={() => {
-                        if (!user) return toast.error("Login required");
-                        dislikeStory(i._id);
-                      }}
-                    >
-                      {isDisliked ? <ThumbsDown fill="red" /> : <ThumbsDown />}
-                    </button>
-                    <h1>{i.dislikes || 0}</h1>
-                  </div>
-                  <div className="flex gap-1 lg:text-lg">
-                    <button onClick={() => saveStory(i._id)}>
-                      {savedStories.includes(i._id) ? (
-                        <Bookmark fill="white" />
-                      ) : (
-                        <Bookmark />
+                  <div className="w-full lg:text-lg text-sm text-start whitespace-pre-line my-1">
+                    <p className="overflow-hidden">
+                      {i.content.slice(
+                        0,
+                        i.content.length -
+                          i.content.length / 2 -
+                          i.content.length / 4
                       )}
-                    </button>
+                      ...{" "}
+                      <Link
+                        to={`stories/${i._id}`}
+                        className="text-blue-100 underline"
+                      >
+                        Read more
+                      </Link>
+                    </p>
                   </div>
-                  <div className="flex gap-1 justify-end lg:text-lg">
-                    <button onClick={() => {
-                      navigator.clipboard.writeText(`${SERVER_URL}/stories/${i._id}`); 
-                      toast.success("Link copied to clipboard");
-                    }}>
-                      <Share2 />
-                    </button>
+                </Link>
+
+                {/* navigation */}
+                <div className="flex gap-2 w-full justify-between p-1 text-sm lg:text-2xl items-center mt-1">
+                  <div className="flex gap-2">
+                    <div className="flex gap-1 lg:text-lg">
+                      <button
+                        onClick={() => {
+                          if (!user) return toast.error("Login required");
+                          likeStory(i._id);
+                        }}
+                      >
+                        {isLiked ? <ThumbsUp fill="blue" /> : <ThumbsUp />}
+                      </button>
+                      <h1>{i.likes || 0}</h1>
+                    </div>
+                    <div className="flex gap-1 lg:text-lg">
+                      <button
+                        onClick={() => {
+                          if (!user) return toast.error("Login required");
+                          dislikeStory(i._id);
+                        }}
+                      >
+                        {isDisliked ? (
+                          <ThumbsDown fill="red" />
+                        ) : (
+                          <ThumbsDown />
+                        )}
+                      </button>
+                      <h1>{i.dislikes || 0}</h1>
+                    </div>
+                    <div className="flex gap-1 lg:text-lg">
+                      <button
+                        onClick={() => {
+                          if (!user) return toast.error("Login required");
+                          saveStory(i._id);
+                        }}
+                      >
+                        {savedStories.includes(i._id) ? (
+                          <Bookmark fill="white" />
+                        ) : (
+                          <Bookmark />
+                        )}
+                      </button>
+                    </div>
+                    <div className="flex gap-1 justify-end lg:text-lg">
+                      <button
+                        onClick={() => {
+                          navigator.clipboard.writeText(
+                            `${SERVER_URL}/stories/${i._id}`
+                          );
+                          toast.success("Link copied to clipboard");
+                        }}
+                      >
+                        <Share2 />
+                      </button>
+                    </div>
                   </div>
-                </div>
-                <div className="flex">
-                  <h1 className="lg:text-lg opacity-50">{i.views} views</h1>
+                  <div className="flex">
+                    <h1 className="lg:text-lg opacity-50">{i.views} views</h1>
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
-        <ToastContainer />
+            );
+          })}
         <div className="w-full flex justify-center">
           <Pagination
             page={page}

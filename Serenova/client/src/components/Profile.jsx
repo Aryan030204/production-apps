@@ -2,7 +2,7 @@
 import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 
 import { logout } from "../utils/userSlice";
 import { SERVER_URL } from "../utils/config";
@@ -14,7 +14,6 @@ import "react-toastify/dist/ReactToastify.css";
 const Profile = ({ user }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
 
   if (!user) return null;
 
@@ -47,8 +46,7 @@ const Profile = ({ user }) => {
       </Link>
 
       <h1 className="whitespace-nowrap font-bold">
-        Hello,{" "}
-        <span className="text-blue-600 font-bold">{user.firstName}</span>
+        Hello, <span className="text-blue-600 font-bold">{user.firstName}</span>
       </h1>
 
       <button
@@ -58,8 +56,6 @@ const Profile = ({ user }) => {
       >
         Logout
       </button>
-
-      <ToastContainer position="top-center" autoClose={1500} />
     </div>
   );
 };

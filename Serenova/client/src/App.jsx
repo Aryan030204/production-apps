@@ -21,6 +21,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ChatButton from "./components/ChatButton";
 import { useSelector } from "react-redux";
+import { ToastContainer } from "react-toastify";
 import StoryPost from "./components/StoryPost";
 
 function App() {
@@ -52,6 +53,15 @@ function App() {
           <Route path="/stories/:id/edit" element={<EditPost />} />
           <Route path="/test" element={<StoryPost />} />
         </Routes>
+        <ToastContainer
+          position="top-left"
+          autoClose={2500}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          pauseOnHover
+          draggable
+        />
         <Footer />
       </div>
     </BrowserRouter>

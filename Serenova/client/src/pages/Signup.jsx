@@ -4,12 +4,11 @@ import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import axios from "axios";
 import { SERVER_URL } from "../utils/config";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"; // fixed path
 import QuoteBox from "../components/QuoteBox";
 
 const Signup = () => {
-  
   const [hidden, setHidden] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -192,7 +191,6 @@ const Signup = () => {
           />
         </div>
       </div>
-      <ToastContainer />
     </>
   );
 };

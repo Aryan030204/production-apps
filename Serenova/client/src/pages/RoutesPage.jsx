@@ -1,12 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { SERVER_URL } from "../utils/config";
-import {toast, ToastContainer} from "react-toastify"
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const RoutesPage = () => {
   const [routes, setRoutes] = useState([]);
-  
 
   const getRoutes = async () => {
     const res = await axios.get(SERVER_URL + "/route/all", {
@@ -69,7 +68,6 @@ const RoutesPage = () => {
             </>
           );
         })}
-        <ToastContainer/>
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import { SERVER_URL } from "../utils/config";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/ReactToastify.css";
 import {
   ArrowLeft,
@@ -140,7 +140,10 @@ const OpenedPost = () => {
   return (
     <div className="flex flex-col p-[2rem] justify-between items-start w-full gap-4">
       <div className="flex border-2 p-2 rounded-lg bg-red-500 hover:bg-red-600 shadow-xl">
-        <Link to={"/blog"} className="flex items-center font-semibold text-white">
+        <Link
+          to={"/blog"}
+          className="flex items-center font-semibold text-white"
+        >
           {" "}
           <ArrowLeft size={20} /> Back
         </Link>
@@ -184,10 +187,7 @@ const OpenedPost = () => {
                     likeStory();
                   } else {
                     toast.error(
-                      "You must be logged in to like or dislike a post",
-                      {
-                        className: "font-semibold",
-                      }
+                      "You must be logged in to like or dislike a post"
                     );
                   }
                 }}
@@ -203,10 +203,7 @@ const OpenedPost = () => {
                     dislikeStory();
                   } else {
                     toast.error(
-                      "You must be logged in to like or dislike a post",
-                      {
-                        className: "font-semibold",
-                      }
+                      "You must be logged in to like or dislike a post"
                     );
                   }
                 }}
@@ -234,7 +231,6 @@ const OpenedPost = () => {
           </div>
         </div>
       </div>
-      <ToastContainer />
     </div>
   );
 };

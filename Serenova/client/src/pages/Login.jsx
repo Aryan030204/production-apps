@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { SERVER_URL } from "../utils/config";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { login } from "../utils/userSlice";
 import QuoteBox from "../components/QuoteBox";
@@ -112,8 +112,6 @@ const Login = () => {
                 Signup
               </Link>
             </h1>
-
-            <ToastContainer />
           </div>
         </div>
 
