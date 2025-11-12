@@ -54,7 +54,7 @@ function App() {
           <Route path="/test" element={<StoryPost />} />
         </Routes>
         <ToastContainer
-          position="top-left"
+          position="top-center"
           autoClose={2500}
           hideProgressBar={false}
           newestOnTop
