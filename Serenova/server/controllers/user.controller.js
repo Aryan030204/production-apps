@@ -258,6 +258,7 @@ const saveDraft = async (req, res) => {
       userId: _id,
       title: { $regex: new RegExp(`^${title}$`, "i") },
       content: content,
+      isDraft: true,
     });
 
     if (existingDraft) {
@@ -270,6 +271,7 @@ const saveDraft = async (req, res) => {
       userId: _id,
       title: title,
       content: content,
+      isDraft: true,
       author: `${user.firstName} ${user.lastName || ""}`.trim(),
     });
 

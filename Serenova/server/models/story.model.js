@@ -22,6 +22,10 @@ const storySchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    isDraft: {
+      type: Boolean,
+      default: false,
+    },
     likes: {
       type: Number,
       default: 0,

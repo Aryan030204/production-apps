@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { useEffect } from "react";
 
 const HeroBanner = () => {
+  const user = JSON.parse(localStorage.getItem("user"));
   useEffect(() => {
     gsap.fromTo(
       ".hero2",
@@ -30,11 +31,13 @@ const HeroBanner = () => {
           Protection at your fingertips, <br />
           because every woman deserves to feel secure!
         </p>
-        <div className="w-fit bg-white font-semibold px-4 py-2 mt-4 ml-2 sm:ml-4 rounded-3xl shadow-lg transition-all duration-300 hover:text-white hover:bg-black">
-          <Link to="/login" className="text-base md:text-lg">
-            <button>JOIN NOW</button>
-          </Link>
-        </div>
+        {!user && (
+          <div className="w-fit bg-white font-semibold px-4 py-2 mt-4 ml-2 sm:ml-4 rounded-3xl shadow-lg transition-all duration-300 hover:text-white hover:bg-black">
+            <Link to="/login" className="text-base md:text-lg">
+              <button>JOIN NOW</button>
+            </Link>
+          </div>
+        )}
       </div>
 
       {/* Image Section */}

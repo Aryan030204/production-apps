@@ -41,34 +41,40 @@ const MyPosts = () => {
       <div className="flex flex-col justify-center items-center p-3 gap-[1rem]">
         <h1 className="text-4xl font-bold my-2">My Posts</h1>
         <div className="flex flex-col gap-[2rem] items-center justify-center">
-          {myPosts.map((i) => {
-            return (
-              <>
-                <Link>
-                  <div className="flex flex-col gap-5 items-start p-3 bg-purple-600 rounded-xl shadow-lg shadow-purple-400">
-                    <div className="flex gap-2">
-                      <h1 className="text-xl font-bold text-white">
-                        {i.title}
-                      </h1>
-                      <div className="flex h-full items-center ml-4 gap-2">
-                        <Link to={`/stories/${i._id}/edit`}>
-                          <button className="bg-white p-2 rounded-lg font-bold hover:bg-gray-200">
-                            <Pencil color="green" />
+          {myPosts.length === 0 ? (
+            <h1 className="text-sm font-semibold text-gray-400">
+              You have no posts...
+            </h1>
+          ) : (
+            myPosts.map((i) => {
+              return (
+                <>
+                  <Link>
+                    <div className="flex flex-col gap-5 items-start p-3 bg-purple-600 rounded-xl shadow-lg shadow-purple-400">
+                      <div className="flex gap-2">
+                        <h1 className="text-xl font-bold text-white">
+                          {i.title}
+                        </h1>
+                        <div className="flex h-full items-center ml-4 gap-2">
+                          <Link to={`/stories/${i._id}/edit`}>
+                            <button className="bg-white p-2 rounded-lg font-bold hover:bg-gray-200">
+                              <Pencil color="green" />
+                            </button>
+                          </Link>
+                          <button
+                            onClick={() => handleDelete(i._id)}
+                            className="bg-white p-2 rounded-lg hover:bg-gray-200"
+                          >
+                            <Trash2 color="red" />
                           </button>
-                        </Link>
-                        <button
-                          onClick={() => handleDelete(i._id)}
-                          className="bg-white p-2 rounded-lg hover:bg-gray-200"
-                        >
-                          <Trash2 color="red" />
-                        </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </Link>
-              </>
-            );
-          })}
+                  </Link>
+                </>
+              );
+            })
+          )}
         </div>
       </div>
     </div>

@@ -114,7 +114,7 @@ const StoryPost = () => {
       const res = await axios.get(
         `${SERVER_URL}/stories/all?page=${page}&limit=5`
       );
-      dispatch(setstories(res.data.stories));
+      dispatch(setstories(res.data.stories.filter((story) => !story.isDraft)));
       setPage(res.data.currentPage);
       setTotalPages(res.data.totalPages);
       if (user !== null) {
